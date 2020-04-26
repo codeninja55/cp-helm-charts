@@ -46,7 +46,7 @@ autoPurgeSnapRetainCount: 3
 autoPurgePurgeInterval: 24
 
 ## Zookeeper JVM Heap Option
-heapOptions: "-Xms512M -Xmx512M"
+heapOptions: "-Xms1G -Xmx1G"
 
 ## Port
 ## ref: https://zookeeper.apache.org/doc/r3.4.10/zookeeperAdmin.html#sc_configuration
@@ -57,17 +57,17 @@ clientPort: 2181
 ## Persistent Volumes
 ## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
 persistence:
-  enabled: true
+  enabled: false
 
   ## The size of the PersistentVolume to allocate to each Zookeeper Pod in the StatefulSet. For
   ## production servers this number should likely be much larger.
   ##
   ## Size for Data dir, where ZooKeeper will store the in-memory database snapshots.
-  dataDirSize: 2Gi
+  dataDirSize: 1Gi
   # dataDirStorageClass: ""
 
   ## Size for data log dir, which is a dedicated log device to be used, and helps avoid competition between logging and snaphots.
-  dataLogDirSize: 2Gi
+  dataLogDirSize: 1Gi
   # dataLogDirStorageClass: ""
 
 
@@ -108,7 +108,7 @@ prometheus:
   ## JMX Exporter Configuration
   ## ref: https://github.com/prometheus/jmx_exporter
   jmx:
-    enabled: true
+    enabled: false
     image: solsson/kafka-prometheus-jmx-exporter@sha256
     imageTag: 6f82e2b0464f50da8104acd7363fb9b995001ddff77d248379f8788e78946143
     imagePullPolicy: IfNotPresent

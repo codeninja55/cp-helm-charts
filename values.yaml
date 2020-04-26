@@ -10,18 +10,18 @@ cp-zookeeper:
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
   imagePullSecrets:
   #  - name: "regcred"
-  heapOptions: "-Xms512M -Xmx512M"
+  heapOptions: "-Xms1G -Xmx1G"
   persistence:
-    enabled: true
+    enabled: false
     ## The size of the PersistentVolume to allocate to each Zookeeper Pod in the StatefulSet. For
     ## production servers this number should likely be much larger.
     ##
     ## Size for Data dir, where ZooKeeper will store the in-memory database snapshots.
-    dataDirSize: 5Gi
+    dataDirSize: 1Gi
     # dataDirStorageClass: ""
 
     ## Size for data log dir, which is a dedicated log device to be used, and helps avoid competition between logging and snaphots.
-    dataLogDirSize: 5Gi
+    dataLogDirSize: 1Gi
     # dataLogDirStorageClass: ""
   resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
@@ -39,17 +39,17 @@ cp-zookeeper:
 cp-kafka:
   enabled: true
   brokers: 3
-  image: confluentinc/cp-enterprise-kafka
+  image: confluentinc/cp-kafka
   imageTag: 5.4.1
-  ## Optionally specify an array of imagePullSecrets. Secrets must be manually created in the namespace.
+  ## Optionally specify an array of imagePullSecrets. Secrets must bse manually created in the namespace.
   ## https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod
   imagePullSecrets:
   #  - name: "regcred"
-  heapOptions: "-Xms512M -Xmx512M"
+  heapOptions: "-Xms1G -Xmx1G"
   persistence:
-    enabled: true
+    enabled: false
     # storageClass: ""
-    size: 2Gi
+    size: 1Gi
     disksPerBroker: 1
   resources: {}
   ## If you do want to specify resources, uncomment the following lines, adjust them as necessary,
